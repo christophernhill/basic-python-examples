@@ -1,15 +1,23 @@
 #!/usr/bin/env python
 import os
+import subprocess
+import hashlib
 
-print "hello from testing driver"
+print "Begin testing driver"
+
+indent='  '
 
 # Switch to first test directory
 os.chdir("verification/tutorial_barotropic_gyre/input/")
 
-import subprocess
-cmd="python gendata.py; sum windx.sin_y topog.box"
+cmd="python gendata.py"
 p = subprocess.Popen(cmd,stdout=subprocess.PIPE,shell=True)
 out, err = p.communicate()
 result=out.split('\n')
 for lin in result:
- print lin
+ print indent, lin
+
+print indent,hashlib.md5(open('windx.sin_y', 'rb').read()).hexdigest(),' windx.sin_y'
+print indent,hashlib.md5(open('topog.box', 'rb').read()).hexdigest(),' topog.box'
+
+print "End testing driver"
