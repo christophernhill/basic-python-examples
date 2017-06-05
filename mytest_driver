@@ -7,7 +7,7 @@ print "hello from testing driver"
 os.chdir("verification/tutorial_barotropic_gyre/input/")
 
 import subprocess
-cmd="python gendata.py"
+cmd="python gendata.py; sum windx.sin_y topog.box"
 p = subprocess.Popen(cmd,stdout=subprocess.PIPE,shell=True)
 out, err = p.communicate()
 result=out.split('\n')
