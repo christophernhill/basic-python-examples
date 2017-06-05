@@ -5,3 +5,11 @@ print "hello from testing driver"
 
 # Switch to first test directory
 os.chdir("verification/tutorial_barotropic_gyre/input/")
+
+import subprocess
+cmd="python gendata.py"
+p = subprocess.Popen(cmd,stdout=subprocess.PIPE,shell=True)
+out, err = p.communicate()
+result=out.split('\n')
+for lin in result:
+ print lin
