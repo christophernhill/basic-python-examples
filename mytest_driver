@@ -1,2 +1,7 @@
 #!/usr/bin/env python
-print "hello"
+import os
+
+print "hello from testing driver"
+
+# Switch to first test directory
+os.chdir("verification/tutorial_barotropic_gyre/input/")
