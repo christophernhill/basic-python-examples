@@ -2,6 +2,7 @@
 import os
 import subprocess
 import hashlib
+import numpy
 
 print "Begin testing driver"
 
@@ -17,7 +18,17 @@ result=out.split('\n')
 for lin in result:
  print indent, lin
 
-print indent,hashlib.md5(open('windx.sin_y', 'rb').read()).hexdigest(),' windx.sin_y'
-print indent,hashlib.md5(open('topog.box', 'rb').read()).hexdigest(),' topog.box'
+# Lets see if hash matches reference
+print indent,'md5sum: ',' windx.sin_y',hashlib.md5(open('windx.sin_y', 'rb').read()).hexdigest()
+print indent,'md5sum: ',' topog.box',hashlib.md5(open('topog.box', 'rb').read()).hexdigest()
+
+# Lets check if statistics are within expected accuracy
+with open('windx.sin_y', 'rb') as fid:
+        tau=numpy.fromfile(fid, ">f8")
+print indent,'stats(std,max,min): ','windx.sin_y',numpy.std(tau),numpy.max(tau),numpy.min(tau)
+
+with open('topog.box', 'rb') as fid:
+        topo=numpy.fromfile(fid, ">f8")
+print indent,'stats(std,max,min): ','topog.box',numpy.std(topo),numpy.max(topo),numpy.min(topo)
 
 print "End testing driver"
