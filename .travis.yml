@@ -1,11 +1,15 @@
-language: python
+language: 
+ - python
 python:
  - "2.7"
 
-services: docker
+services: 
+ - docker
 before_install:
- docker pull mitgcm/testreport-images:fc11-base-20170703
+ - docker pull mitgcm/testreport-images:fc11-base-20170703
  
-install: "pip install -r requirements.txt"
+install: 
+ - "pip install -r requirements.txt"
 
-script: python mytest_driver
+script: 
+ - python mytest_driver
