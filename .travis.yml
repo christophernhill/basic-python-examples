@@ -7,7 +7,7 @@ services:
  - docker
 before_install:
  - docker pull mitgcm/testreport-images:fc11-base-20170703
- - docker run --name fc11-testreport -t -d mitgcm/testreport-images:fc11-base-20170703 -v `pwd`:/tmp /bin/bash
+ - docker run --name fc11-testreport -t -d mitgcm/testreport-images:fc11-base-20170703 -v /home/travis/build/mitgcm/basic-python-examples:/tmp /bin/bash
  - docker exec -i fc11-testreport rpm -vv --rebuilddb
  - docker exec -i fc11-testreport df -h
  - docker exec -i fc11-testreport yum install python-pip
