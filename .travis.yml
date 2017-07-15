@@ -18,4 +18,5 @@ install:
  - pwd
 
 script: 
+ - docker exec -i fc11-testreport -v `pwd`:/home/mitgcm/testing df -h
  - python mytest_driver
