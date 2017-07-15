@@ -18,5 +18,6 @@ install:
  - pwd
 
 script: 
+ - echo `pwd`
  - docker exec -i fc11-testreport df -h
  - python mytest_driver
