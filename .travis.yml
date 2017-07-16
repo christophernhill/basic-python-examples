@@ -7,7 +7,7 @@ services:
  - docker
 before_install:
  - docker pull mitgcm/testreport-images:fc11-base-20170715
- - docker run  -v .:/MITgcm --name fc11-testreport -t -d mitgcm/testreport-images:fc11-base-20170715 /bin/bash
+ - docker run  -v `pwd`:/MITgcm --name fc11-testreport -t -d mitgcm/testreport-images:fc11-base-20170715 /bin/bash
  - docker exec -i fc11-testreport rpm -vv --rebuilddb
  - docker exec -i fc11-testreport df -h
  - docker exec -i fc11-testreport ls -altr /MITgcm
@@ -23,5 +23,5 @@ script:
  - echo `pwd`
  - docker exec -i fc11-testreport df -h
  - docker exec -i fc11-testreport gfortran
- - docker exec -i fc11-testreport bash -c "cd /MITgcm/verification; pwd; ls -altr"
+ - docker exec -i fc11-testreport bash -c "cd /MITgcm/`pwd`; pwd; ls -altr"
  - python mytest_driver
